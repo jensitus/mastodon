@@ -2468,27 +2468,22 @@ $ui-header-height: 55px;
   align-items: center;
 
   &__logo {
-    display: inline-flex;
-    padding: 15px;
-
-    .logo {
-      height: $ui-header-height - 30px;
-      width: auto;
-    }
-
-    .logo--wordmark {
-      display: none;
-    }
-
-    @media screen and (width >= 320px) {
-      .logo--wordmark {
-        display: block;
-      }
-
-      .logo--icon {
-        display: none;
-      }
-    }
+    color: $primary-text-color;
+    display: block;
+    font-size: 26px;
+    font-weight: bolder;
+    font-family: Ubuntu, serif;
+    padding: 12px;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    //display: inline-flex;
+    //padding: 15px;
+    //
+    //.logo {
+    //  height: $ui-header-height - 30px;
+    //  width: auto;
+    //}
   }
 
   &__links {
@@ -3410,6 +3405,104 @@ $ui-header-height: 55px;
   .switch-to-advanced__toggle {
     color: $ui-button-tertiary-color;
     font-weight: bold;
+  }
+}
+
+.logo-link-custom-header {
+  color: $primary-text-color;
+  display: block;
+  font-size: 26px;
+  font-weight: bolder;
+  font-family: Ubuntu, serif;
+  padding: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $highlight-text-color;
+    }
+  }
+
+  &--logo {
+    background: transparent;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
+  }
+}
+
+.logo-link-custom {
+  color: $primary-text-color;
+  display: block;
+  font-size: 28px;
+  font-weight: bolder;
+  font-family: Ubuntu, serif;
+  padding: 15px;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $highlight-text-color;
+    }
+  }
+
+  &--logo {
+    background: transparent;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
   }
 }
 
