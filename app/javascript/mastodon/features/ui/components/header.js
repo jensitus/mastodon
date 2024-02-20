@@ -1,8 +1,7 @@
 import React from 'react';
-import Logo from 'mastodon/components/logo';
 import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { registrationsOpen, me } from 'mastodon/initial_state';
+import { me, registrationsOpen } from 'mastodon/initial_state';
 import Avatar from 'mastodon/components/avatar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -35,7 +34,7 @@ class Header extends React.PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish' defaultMessage='Publish' /></Link>}
+          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='Publish' /></Link>}
           <Account />
         </>
       );
@@ -50,7 +49,7 @@ class Header extends React.PureComponent {
 
     return (
       <div className='ui__header'>
-        <Link to='/' className='ui__header__logo'><Logo /></Link>
+        <Link to='/' className='ui__header__logo'>ist - ur . org</Link>
 
         <div className='ui__header__links'>
           {content}
