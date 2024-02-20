@@ -199,9 +199,9 @@ module Mastodon
     config.action_mailer.preview_path = Rails.root.join('spec', 'mailers', 'previews')
 
     # We use our own middleware for this
-    config.public_file_server.enabled = false
+    config.public_file_server.enabled = true
 
-    config.middleware.use PublicFileServerMiddleware if Rails.env.development? || Rails.env.test? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
+    config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 

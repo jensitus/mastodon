@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgres:
+    container_name: dev-postgres
+    image: postgres:15-alpine
+    ports:
+      - '5434:5432'
+    environment:
+      POSTGRES_DB: masto
+      POSTGRES_PASSWORD: dev123
+      POSTGRES_USER: undok
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+#  redis:
+#    restart: always
+#    image: redis:7-alpine
+#    ports:
+#      - '6379:6379'
+#    networks:
+#      - internal_network
+#    healthcheck:
+#      test: [ 'CMD', 'redis-cli', 'ping' ]
+#    volumes:
+#      - ./redis:/data
+
+volumes:
+  pg-data:
+
+networks:
+  internal_network:
+    internal: true
