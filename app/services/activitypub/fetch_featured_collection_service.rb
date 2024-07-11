@@ -23,9 +23,9 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
 
     case collection['type']
     when 'Collection', 'CollectionPage'
-      collection['items']
+      as_array(collection['items'])
     when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
+      as_array(collection['orderedItems'])
     end
   end
 
@@ -46,14 +46,14 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
       next unless item.is_a?(String) || item['type'] == 'Note'
 
       uri = value_or_id(item)
-      next if ActivityPub::TagManager.instance.local_uri?(uri)
+      next if ActivityPub::TagManager.instance.local_uri?(uri) || invalid_origin?(uri)
 
-      status = ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower)
+      status = ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower, expected_actor_uri: @account.uri, request_id: @options[:request_id])
       next unless status&.account_id == @account.id
 
       status.id
     rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.debug "Invalid pinned status #{uri}: #{e.message}"
+      Rails.logger.debug { "Invalid pinned status #{uri}: #{e.message}" }
       nil
     end
 
